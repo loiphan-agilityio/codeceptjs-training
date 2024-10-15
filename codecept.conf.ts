@@ -35,6 +35,6 @@ exports.config = {
       timeout: 0
     }
   ],
-  tests: './*_test.ts',
+  tests: './test/*_test.ts',
   name: 'automation'
 }
