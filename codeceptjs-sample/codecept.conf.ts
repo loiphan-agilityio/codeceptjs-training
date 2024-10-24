@@ -1,11 +1,12 @@
+import customLogger from "./customLogger";
+
 exports.config = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'https://todomvc.com/examples/react/dist',
+      url: 'http://uitestingplayground.com',
       show: true,
-      windowSize: '1200x900',
-      waitForNavigation: 'networkidle0'
+      windowSize: '1200x900'
     }
   },
   include: {
@@ -18,12 +19,25 @@ exports.config = {
   hooks: [],
   gherkin: {
     features: './features/*.feature',
-    steps: ['./step_definitions/steps.ts']
+    steps: './step_definitions/**/*.ts'
   },
   plugins: {
     screenshotOnFail: {
       enabled: true
-    }
+    },
+    tryTo: {
+      enabled: true
+    },
+    retryFailedStep: {
+      enabled: true
+    },
+    retryTo: {
+      enabled: true
+    },
+    eachElement: {
+      enabled: true
+    },
+    pauseOnFail: {}
   },
   stepTimeout: 0,
   stepTimeoutOverride: [{
@@ -35,6 +49,8 @@ exports.config = {
       timeout: 0
     }
   ],
-  tests: './test/*_test.ts',
-  name: 'automation'
+  tests: './*_test.ts',
+  fullPromiseBased: true,
+  name: 'automation',
+  customLogger
 }
